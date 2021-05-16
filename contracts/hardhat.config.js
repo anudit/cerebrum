@@ -3,16 +3,18 @@ require("@nomiclabs/hardhat-etherscan");
 require('hardhat-abi-exporter');
 require('hardhat-contract-sizer');
 require("hardhat-gas-reporter");
+require('hardhat-ethernal');
 require('dotenv').config()
 
-let mnemonic = process.env.MNEMONIC;
+let pk1 = process.env.PK1;
+let pk2 = process.env.PK2;
 
 const infuraNetwork = (network, chainId, gas) => {
   return {
     url: `https://${network}.infura.io/v3/${process.env.PROJECT_ID}`,
     chainId,
     gas,
-    accounts: mnemonic ? { mnemonic } : undefined
+    accounts: [pk1, pk2]
   };
 };
 
@@ -45,10 +47,10 @@ module.exports = {
     kovan: infuraNetwork("kovan", 42, 6283185),
     goerli: infuraNetwork("goerli", 5, 6283185),
     substrate: {
-      url: "http://127.0.0.1:9933",
-      chainId: 21,
+      url: "https://anudit-thesentinelai-canvas-node-6q2r-9933.githubpreview.dev/",
+      chainId: 42,
       gasPrice: 1000000000,
-      accounts: mnemonic ? { mnemonic } : undefined
+      accounts: [pk1, pk2]
     }
   },
   etherscan: {

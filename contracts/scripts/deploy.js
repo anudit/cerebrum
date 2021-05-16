@@ -3,12 +3,11 @@ const { ethers } = require("hardhat");
 
 async function main() {
 
-    const [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
+    const [owner, addr1] = await ethers.getSigners();
 
     console.log("Deploying contracts with the account:", owner.address);
     console.log(`Owner [${owner.address}] Balance:`, ethers.utils.formatEther(await owner.getBalance()).toString());
     console.log(`Addr1 [${addr1.address}] Balance:`, ethers.utils.formatEther(await addr1.getBalance()).toString());
-    console.log(`Addr2 [${addr2.address}] Balance:`, ethers.utils.formatEther(await addr2.getBalance()).toString());
 
     const CerebrumFactory = await ethers.getContractFactory("Cerebrum");
     const Cerebrum = await CerebrumFactory.deploy(owner.address);
