@@ -24,3 +24,6 @@ polkadot.*
 
 # NixOS development environment
 .envrc
+
+notes.txt
+ui

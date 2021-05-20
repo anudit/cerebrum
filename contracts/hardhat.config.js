@@ -47,7 +47,7 @@ module.exports = {
     kovan: infuraNetwork("kovan", 42, 6283185),
     goerli: infuraNetwork("goerli", 5, 6283185),
     substrate: {
-      url: "https://anudit-thesentinelai-canvas-node-6q2r-9933.githubpreview.dev/",
+      url: "https://anudit-cerebrum-6hp8-9933.githubpreview.dev",
       chainId: 42,
       gasPrice: 1000000000,
       accounts: [pk1, pk2]
