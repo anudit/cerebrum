@@ -1,0 +1,190 @@
+
+
+  <!doctype html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Cerebrum</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <link rel="shortcut icon" href="/icons/favicon.ico">
+      <meta name="apple-mobile-web-app-title" content="Cerebrum">
+      <meta name="application-name" content="Cerebrum">
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png">
+      <meta name="msapplication-config" content="/icons/browserconfig.xml">
+      <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
+      <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
+      <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
+      <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
+      <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
+      <link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+      <link rel="manifest" href="manifest.json">
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
+      <meta name="theme-color" content="#ffffff">
+
+      <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet">
+      <link rel="stylesheet" media="all" href="css/bootstrap.min.css">
+      <link rel="stylesheet" media="all" href="css/lockdown.css">
+      <link rel="stylesheet" media="all" href="css/custom.css">
+
+      <style>
+        .darkmode-layer {
+          z-index: 60 !important;
+        }
+        .darkmode-toggle{
+          z-index: 61 !important;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="page">
+        <header class="header header-main">
+          <div class="container">
+            <nav class="navbar navbar-expand-lg">
+              <a class="navbar-brand" href="/">
+                <div class="navbar-logo">
+                  <img class="navbar-pic" src="img/logo.jpg" alt="Cerebrum Icon">
+                </div>
+                <div class="navbar-group">
+                  <div class="navbar-title">Cerebrum</div>
+                </div>
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">Learn</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active nav-link-drop" href="#">
+                      <span>Menu</span>
+                      <svg class="nav-arrow" xmlns="http://www.w3.org/2000/svg" width="8" height="5" viewBox="0 0 8 5">
+                        <polygon points=".94 0 4 3.09 7.06 0 8 .951 4 5 0 .951" />
+                      </svg>
+                    </a>
+                    <div class="nav-drop">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <a class="nav-group" href="/dashboard.html">
+                            <div class="nav-title">Dashboard</div>
+                            <div class="nav-text">Your one stop to decentralized training.</div>
+                          </a>
+                        </div>
+                        <div class="col-md-6">
+                          <a class="nav-group" href="/listnodes.html">
+                            <div class="nav-title">Show Nodes</div>
+                            <div class="nav-text">View the nodes available in the network for training.</div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active nav-link-drop" href="#">
+                      <span>Account</span>
+                      <svg class="nav-arrow" xmlns="http://www.w3.org/2000/svg" width="8" height="5" viewBox="0 0 8 5">
+                        <polygon points=".94 0 4 3.09 7.06 0 8 .951 4 5 0 .951" />
+                      </svg>
+                    </a>
+                    <div class="nav-drop">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <a class="nav-group" href="/dashboard.html">
+                            <div class="nav-title" id="userAddress">0x000...000</div>
+                            <div class="nav-text" id="userBalance">0.00 ETH</div>
+                          </a>
+                        </div>
+                        <div class="col-md-6">
+                          <a class="nav-group" onclick="logout()">
+                            <div class="nav-title">Logout</div>
+                            <div class="nav-text">Disconnect your Wallet</div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </header>
+
+        <div class="inner">
+          <div class="section">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-6 mb-5 mb-lg-0">
+                      <div class="wrap">
+                        <div class="theme" style="color: #0189D1">Let's Get Started.</div>
+                        <div class="title title-2">Just drop your model here.</div>
+                        <div class="text">You can download a <i>number detection model</i> (MNIST) <a class="link" href="model.h5">here</a> to test it out.</div>
+
+                        <form onsubmit="modelhandle(event)">
+                            <input type="file" name="file" id="modelfile">
+
+                            <div class="slidecontainer">
+                              <p>Choose the number of <b>training rounds</b>: <span id="rndCntLabel"></span></p>
+                              <input type="range" min="1" max="9" value="3" class="slider" id="rndCount">
+                            </div><br><br>
+                            <button class="btn btn-primary" id="submit" >Start Learning</button>
+                        </form>
+
+                      </div>
+                    </div>
+                    <div class="col-md-6"><div class="theme" style="color: #0189D1" id="tasksTitle">Forming the pixels on your screen.</div>
+                      <figure class="preview" style="display: none;" id="noTasks">
+                        <img class="preview-pic" src="img/landing/nomodels.png" style="max-height: 400px;">
+                      </figure>
+                      <div class="vacancy" id="userTasks"></div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="js/lib/ethers@5.1.4.js"></script>
+      <script src="js/lib/portis@3.0.5.js"></script>
+      <script src="js/lib/web3modal@1.9.3.js"></script>
+      <script src="js/lib/bootstrap.min.js"></script>
+      <script src="js/lib/sweetalert2@9.js"></script>
+      <script src="js/lib/ipfs@0.55.1.js"></script>
+
+      <script src="js/globals.js"></script>
+      <script src="js/dashboard.js"></script>
+      <script src="js/index.js"></script>
+
+
+    </body>
+    <script src="js/lib/darkmode-js.min.js"></script>
+    <script>
+      var options = {
+        bottom: '32px',
+        left: 'unset',
+        right: '32px',
+        time: '0.5s',
+        mixColor: '#fff',
+        backgroundColor: '#fff',
+        buttonColorDark: '#100f2c',
+        buttonColorLight: '#fff',
+        saveInCookies: true,
+        label: '🌓',
+        autoMatchOsTheme: true
+      }
+      const darkmode = new Darkmode(options);
+      darkmode.showWidget();
+    </script>
+
+  </html>
