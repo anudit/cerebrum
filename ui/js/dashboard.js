@@ -11,8 +11,7 @@ async function init() {
 
     document.getElementById("userAddress").innerText = trimAdd(accounts[0]);
 
-    customWeb3.getBalance(accounts[0]).then((balance)=>{
-        console.log("balance", balance);
+    modalWeb3.getBalance(accounts[0]).then((balance)=>{
         document.getElementById("userBalance").innerText = parseFloat(ethers.utils.formatEther(balance)).toFixed(2)+" ETH";
     })
 
