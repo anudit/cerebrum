@@ -1,6 +1,6 @@
 // const RPC_ENDPOINT = "https://anudit-cerebrum-6hp8-9933.githubpreview.dev"
-const RPC_ENDPOINT = "https://rpc-mumbai.maticvigil.com"
-const WS_ENDPOINT = "wss://rpc-mumbai.maticvigil.com/ws"
+const RPC_ENDPOINT = "https://kovan.infura.io/v3/9f34d0bf5e1b4b36914fd5bc66c50b05"
+const WS_ENDPOINT = "wss://kovan.infura.io/ws/v3/9f34d0bf5e1b4b36914fd5bc66c50b05"
 
 const contractABI=[
 	{
@@ -367,7 +367,7 @@ const contractABI=[
 	  "type": "function"
 	}
 ];
-const contractAddress = "0xC2Bf5F29a4384b1aB0C063e1c666f02121B6084a";
+const contractAddress = "0x79885EBC79783C9174faC36Ed99cD9467CB8cDbE";
 
 const COORDINATOR_NODE = "http://127.0.0.1:5000/";
 const upload_ep = "first-run";

@@ -77,7 +77,7 @@ window.addEventListener('load', async () => {
         window.modalWeb3 = modalWeb3;
         window.netId = parseInt(ethereum.chainId);
 
-        if(parseInt(netId) !== 80001){
+        if(parseInt(netId) !== 42){
             alert(`Please switch to ${RPC_ENDPOINT}`)
         }
         else {

@@ -60,7 +60,7 @@ async function modelhandle(event){
     submitBtn.disabled = true;
 
     if (document.querySelector('#modelfile').files.length < 1) {
-        submitBtn.innerText = "Nani?!";
+        submitBtn.innerText = "Upload a file!";
         setTimeout(function(){ submitBtn.innerText = "Start Learning"; submitBtn.disabled = false;}, 2000);
     }
     else {
@@ -184,15 +184,18 @@ async function createTask( _modelHash = ""){
 
 async function getTasks(_userAddress) {
 
-    let responseData = [];
-
     let filter = CerebrumContract.filters.newTaskCreated(null, _userAddress);
-    let data = await modalWeb3.getLogs(filter);
+    let frag = CerebrumContract.interface.getEvent('newTaskCreated')
+    let data = await CerebrumContract.queryFilter(filter, 0x0);
+
+    let responseData = [];
     data.forEach(async function(log){
-        let logData = log.returnValues;
+
+        let logData = CerebrumContract.interface.decodeEventLog(frag, log.data, log.topics);
+
         let date = simpleDate(parseInt(logData['_time']));
         let taskIndex = parseInt(logData['taskID']);
         responseData.push([taskIndex, date]);
     })
-    return data.reverse();
+    return responseData.reverse();
 }
