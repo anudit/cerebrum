@@ -1,9 +1,10 @@
-/* _____              _
-  / ____|            | |
- | |     ___ _ __ ___| |__  _ __ _   _ _ __ ___
- | |    / _ \ '__/ _ \ '_ \| '__| | | | '_ ` _ \
- | |___|  __/ | |  __/ |_) | |  | |_| | | | | | |
-  \_____\___|_|  \___|_.__/|_|   \__,_|_| |_| |_|
+/*
+ ██████╗███████╗██████╗ ███████╗██████╗ ██████╗ ██╗   ██╗███╗   ███╗
+██╔════╝██╔════╝██╔══██╗██╔════╝██╔══██╗██╔══██╗██║   ██║████╗ ████║
+██║     █████╗  ██████╔╝█████╗  ██████╔╝██████╔╝██║   ██║██╔████╔██║
+██║     ██╔══╝  ██╔══██╗██╔══╝  ██╔══██╗██╔══██╗██║   ██║██║╚██╔╝██║
+╚██████╗███████╗██║  ██║███████╗██████╔╝██║  ██║╚██████╔╝██║ ╚═╝ ██║
+ ╚═════╝╚══════╝╚═╝  ╚═╝╚══════╝╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝
 */
 
 // SPDX-License-Identifier: MIT
@@ -46,12 +47,12 @@ contract Cerebrum is CerebrumMeta {
     }
 
     address public owner;
-    address public coordinatorAddress = 0xBeb71662FF9c08aFeF3866f85A6591D4aeBE6e4E;
+    address public coordinatorAddress;
 
     uint256 public nextTaskID = 1;
     mapping (uint256 => Task) public CerebrumTasks;
     mapping (address => uint256[]) public UserTaskIDs;
-    mapping (address => string[]) public UserFiles;
+    mapping (address => string[]) public States;
 
     event newTaskCreated(uint256 indexed taskID, address indexed _user, string _modelHash, uint256 _amt, uint256 _time);
     event modelUpdated(uint256 indexed taskID, string _modelHash, uint256 _time);
@@ -66,9 +67,9 @@ contract Cerebrum is CerebrumMeta {
       _;
     }
 
-    constructor(address _coordinatorAddress) {
+    constructor() {
         owner = msg.sender;
-        coordinatorAddress = _coordinatorAddress;
+        coordinatorAddress = msg.sender;
     }
 
     function updateCoordinator(address _coordinatorAddress)
@@ -99,6 +100,42 @@ contract Cerebrum is CerebrumMeta {
         nextTaskID = nextTaskID + 1;
     }
 
+
+    function updateModelForTaskMeta(
+        uint256 _taskID,  string memory _modelHash, address payable computer,
+        bytes32 r, bytes32 s, uint8 v
+    )
+        public
+    {
+        require(computer != address(0), "invalid-address-0");
+
+        MetaTransaction memory metaTx = MetaTransaction({
+            nonce: nonces[computer],
+            from: computer
+        });
+
+        bytes32 digest = keccak256(
+            abi.encodePacked(
+                "\x19\x01",
+                DOMAIN_SEPARATOR,
+                keccak256(abi.encode(META_TRANSACTION_TYPEHASH, metaTx.nonce, metaTx.from))
+            )
+        );
+
+        require(computer == ecrecover(digest, v, r, s), "invalid-signatures");
+
+        require(_taskID <= nextTaskID, "Invalid Task ID");
+        uint256 newRound = CerebrumTasks[_taskID].currentRound + 1;
+        require(newRound <= CerebrumTasks[_taskID].totalRounds, "All Rounds Completed");
+
+
+        CerebrumTasks[_taskID].currentRound = newRound;
+        CerebrumTasks[_taskID].modelHashes[newRound - 1] = _modelHash;
+        computer.transfer(CerebrumTasks[_taskID].cost / CerebrumTasks[_taskID].totalRounds);
+        emit modelUpdated(_taskID, _modelHash, block.timestamp);
+    }
+
+
     function updateModelForTask(uint256 _taskID,  string memory _modelHash, address payable computer)
         public onlyCoordinator
     {
@@ -125,13 +162,13 @@ contract Cerebrum is CerebrumMeta {
         return UserTaskIDs[msg.sender];
     }
 
-    function storeFile(string memory _fileHash) public {
-        UserFiles[msg.sender].push(_fileHash);
+    function storeState(string memory _fileHash) public {
+        States[msg.sender].push(_fileHash);
         emit fileAdded(msg.sender, _fileHash, block.timestamp);
     }
 
-    function getFiles() public view returns (string[] memory){
-        return UserFiles[msg.sender];
+    function getStateCnt(address _address) public view returns (uint256){
+        return States[_address].length;
     }
 
 }

@@ -15,6 +15,9 @@ async function main() {
     const DaiFactory = await ethers.getContractFactory("Dai");
     const Dai = await DaiFactory.deploy(hre.network.config.chainId);
 
+    await Cerebrum.createTask('QmdEtRcb1rUvmQsbFcByo3orf9pMxC2sp3ejUX9mTnVYws', "3" );
+    await Cerebrum.storeState('QmT3jaB2Nraau2HzUv6cgtHW1uUiG7Z4pgunajyjEVJU8n');
+
     let net = hre.network.config.chainId.toString();
 
     console.log(JSON.stringify({
@@ -23,7 +26,6 @@ async function main() {
             "Dai": Dai.address
         }
     }, null, 2));
-
 
 }
 

@@ -26,7 +26,7 @@ jobs:
         node-version: '14'
 
     - name: Install Dependencies
-      run: npm i
+      run: cd contracts && npm i
 
     - name: Run Hardhat Tests
-      run: npm run test
+      run: cd contracts && npm run test
