@@ -6,12 +6,12 @@ require("hardhat-gas-reporter");
 require('hardhat-ethernal');
 require('dotenv').config()
 
-let pk1 = process.env.PK1;
-let pk2 = process.env.PK2;
+let pk1 = process.env.PK_A;
+let pk2 = process.env.PK_B;
 
 const infuraNetwork = (network, chainId, gas) => {
   return {
-    url: `https://${network}.infura.io/v3/${process.env.PROJECT_ID}`,
+    url: `https://${network}.infura.io/v3/9f34d0bf5e1b4b36914fd5bc66c50b05`,
     chainId,
     gas,
     accounts: [pk1, pk2]
@@ -46,12 +46,12 @@ module.exports = {
     rinkeby: infuraNetwork("rinkeby", 4, 6283185),
     kovan: infuraNetwork("kovan", 42, 6283185),
     goerli: infuraNetwork("goerli", 5, 6283185),
-    substrate: {
-      url: "https://anudit-cerebrum-6hp8-9933.githubpreview.dev",
-      chainId: 42,
-      gasPrice: 1000000000,
-      accounts: [pk1, pk2]
-    }
+    // substrate: {
+    //   url: "https://anudit-cerebrum-6hp8-9933.githubpreview.dev",
+    //   chainId: 42,
+    //   gasPrice: 1000000000,
+    //   accounts: [pk1, pk2]
+    // }
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY ? process.env.ETHERSCAN_API_KEY : undefined
