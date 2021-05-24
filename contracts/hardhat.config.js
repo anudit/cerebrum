@@ -14,7 +14,7 @@ const infuraNetwork = (network, chainId, gas) => {
     url: `https://${network}.infura.io/v3/9f34d0bf5e1b4b36914fd5bc66c50b05`,
     chainId,
     gas,
-    accounts: pk1 == null ? [pk1, pk2] : []
+    accounts: pk1 == null ? [] : [pk1, pk2]
   };
 };
 
@@ -50,7 +50,7 @@ module.exports = {
     //   url: "https://anudit-cerebrum-6hp8-9933.githubpreview.dev",
     //   chainId: 42,
     //   gasPrice: 1000000000,
-    //   accounts: pk1 == null ? [pk1, pk2] : []
+    //   accounts: pk1 == null ? [] : [pk1, pk2]
     // }
   },
   etherscan: {
