@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+        <link href="static/css/custom.css" rel="stylesheet" />
+        <title>Cerebrum - Neuron Dashboard</title>
+    </head>
+    <body style="background-color: #00050c;">
+        <nav class="navbar navbar-expand-lg navbar-primary text-white">
+            <div class="container-fluid">
+                <div class="navbar-brand" href="#">Node Dashboard</div>
+            </div>
+        </nav>
+        <br />
+        <div class="d-flex justify-content-center">
+            <div class="card text-white mb-3" style="max-width: 430px; background-color: #2d2d2d;">
+                <!-- <div class="card-header">Header</div> -->
+                <div class="card-body">
+                    <ul class="nav nav-pills mb-3 mx-auto" id="pills-tab" role="tablist" style="width: fit-content;">
+                    <br/>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="pills-node-tab" data-toggle="pill" href="#pills-node" role="tab" aria-controls="pills-node" aria-selected="true">
+                                Node
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="pills-settings-tab" data-toggle="pill" href="#pills-settings" role="tab" aria-controls="pills-settings" aria-selected="true">
+                                Settings
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="pills-advanced-tab" data-toggle="pill" href="#pills-advanced" role="tab" aria-controls="pills-advanced" aria-selected="false">
+                                Advanced
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade" id="pills-node" role="tabpanel" aria-labelledby="pills-node-tab">
+                            <div class="container container-border">
+                                <div class="row">
+                                    <div class="text-muted text-left">
+                                        Staking
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <input type="number" class="form-control form-control-lg text-white" aria-label="Text input with dropdown button" style="background-color: #2d2d2d;" placeholder="0" />
+                                    <br />
+                                    <p class="text-secondary">
+                                        Current Stake <span> 0 ETH</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <br />
+                                <div class="row">
+                                    <button type="button" class="btn btn-primary btn-lg btn-block">Stake</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show active" id="pills-settings" role="tabpanel" aria-labelledby="pills-settings-tab">
+                            <div class="container container-border">
+                                <div class="row">
+                                    <div class="col-6 text-muted text-left">
+                                        New Address
+                                        </div>
+                                        <div class="col-6 text-muted text-right">
+                                            <span class="badge rounded-pill bg-secondary" style="padding: 5px;cursor: pointer;">
+                                                Use from Wallet
+                                            </span>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                    <input type="text" id ="newethadd" class="form-control form-control-lg text-white" aria-label="Text input with dropdown button" style="background-color: #2d2d2d;" placeholder="0x0" />
+                                    <br />
+                                    <p class="text-secondary">
+                                        Current - {{trimAdd(keystore['PUBLIC_KEY'])}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <br />
+                                <div class="row">
+                                    <button type="button" onclick="updateEthAddress()" class="btn btn-primary btn-lg btn-block">Update Address</button>
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <div class="container container-border">
+                                <div class="row">
+                                    <div class="text-muted text-left">
+                                        New Hostname
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <input type="text" id="newhostname" class="form-control form-control-lg text-white" aria-label="Text input with dropdown button" style="background-color: #2d2d2d;" placeholder="https://domain.io" />
+                                    <br />
+                                    <p class="text-secondary">
+                                        Current - {{keystore['HOST_NAME']}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <br />
+                                <div class="row">
+                                    <button type="button" onclick="updateHostName()" class="btn btn-primary btn-lg btn-block">Update Hostname</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-advanced" role="tabpanel" aria-labelledby="pills-advanced-tab">
+                            <div class="container">
+                                <div class="row">
+                                    <button type="button" class="btn btn-primary btn-lg btn-block" onclick='viewlogs()'>View Node Logs</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var coordinatorAdd = "{{coordinator}}";
+            var systemHostName = "{{keystore['HOST_NAME']}}";
+            var systemEthereumAddress = "{{keystore['PUBLIC_KEY']}}";
+        </script>
+        <!-- Optional JavaScript -->
+        <!-- Popper.js first, then Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+
+        <script src="static/js/tokensEnabled.js"></script>
+        <script src="static/js/index.js"></script>
+    </body>
+</html>

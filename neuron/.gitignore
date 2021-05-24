@@ -1,0 +1,9 @@
+/__pycache__
+/storage_dir
+/model_storage
+*.log
+.env
+.keystore
+/.vscode
+note.txt
+
