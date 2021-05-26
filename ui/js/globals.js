@@ -1,7 +1,7 @@
-// const RPC_ENDPOINT = "https://anudit-cerebrum-6hp8-9933.githubpreview.dev"
-// const WS_ENDPOINT = "wss://anudit-cerebrum-6hp8-9944.githubpreview.dev"
-const RPC_ENDPOINT = "https://kovan.infura.io/v3/9f34d0bf5e1b4b36914fd5bc66c50b05"
-const WS_ENDPOINT = "wss://kovan.infura.io/ws/v3/9f34d0bf5e1b4b36914fd5bc66c50b05"
+const RPC_ENDPOINT = "https://anudit-cerebrum-6hp8-9933.githubpreview.dev"
+const WS_ENDPOINT = "wss://anudit-cerebrum-6hp8-9944.githubpreview.dev"
+// const RPC_ENDPOINT = "https://kovan.infura.io/v3/9f34d0bf5e1b4b36914fd5bc66c50b05"
+// const WS_ENDPOINT = "wss://kovan.infura.io/ws/v3/9f34d0bf5e1b4b36914fd5bc66c50b05"
 const contractABI=[
 	{
 	  "inputs": [

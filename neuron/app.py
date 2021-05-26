@@ -233,7 +233,7 @@ if (checkKeystore() == False):
   print("Keystore has Missing Keys. Exiting...")
   sys.exit(0)
 
-w3 = Web3(HTTPProvider('https://rpc-mumbai.matic.today'))
+w3 = Web3(HTTPProvider('https://anudit-cerebrum-6hp8-9933.githubpreview.dev/'))
 if not w3.isConnected():
   print("Web3 Not Connected. Exiting...")
   sys.exit(0)
